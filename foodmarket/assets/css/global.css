@@ -1,0 +1,102 @@
+/* assets/css/global.css */
+/* ========== Design Tokens ========== */
+:root{
+  --bg:#0f1220;
+  --surface:#151833;
+  --muted:#8a90a6;
+  --text:#e6e9f2;
+  --brand:#6c5ce7;
+  --brand-2:#00d4ff;
+  --accent:#22c55e;
+  --danger:#ef4444;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* ========== Resets ========== */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background:
+    radial-gradient(1200px 800px at 90% -10%, rgba(0,212,255,.06), transparent 40%),
+    radial-gradient(1000px 700px at -10% 0%, rgba(108,92,231,.12), transparent 45%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* ========== Layout ========== */
+.container{ width:100%; max-width:1200px; margin:0 auto; padding:24px }
+.grid{ display:grid; gap:16px }
+.grid-2{ grid-template-columns:repeat(2,minmax(0,1fr)) }
+.grid-3{ grid-template-columns:repeat(3,minmax(0,1fr)) }
+@media (max-width:1000px){ .grid-3{ grid-template-columns:repeat(2,minmax(0,1fr)) } }
+@media (max-width:640px){ .grid-2, .grid-3{ grid-template-columns:1fr } }
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(6px);
+  padding:16px;
+}
+
+/* ========== Navbar ========== */
+.navbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(15,18,32,.6);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 24px }
+.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text); font-weight:700; letter-spacing:.5px }
+.brand .logo{ display:inline-flex; width:112px; height:32px; color:var(--brand) }
+
+.nav-actions{ display:flex; align-items:center; gap:8px }
+.badge{ font-size:12px; padding:2px 8px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08) }
+
+/* ========== Buttons (primary/secondary/ghost) ========== */
+.btn{
+  --btn-bg: linear-gradient(135deg, var(--brand), var(--brand-2));
+  --btn-text:#0d1020;
+  --btn-shine: radial-gradient(60% 220% at 10% -50%, rgba(255,255,255,.7), transparent 60%);
+  appearance:none; border:none; position:relative;
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px; padding:12px 16px; border-radius:14px;
+  color:var(--btn-text);
+  background:linear-gradient(0deg, rgba(255,255,255,.25), rgba(255,255,255,0)) , var(--btn-bg);
+  box-shadow: 0 10px 20px rgba(108,92,231,.25), inset 0 -1px 0 rgba(0,0,0,.25);
+  cursor:pointer; font-weight:700; overflow:hidden;
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn::before{ content:""; position:absolute; inset:0; background:var(--btn-shine); opacity:.0; transition:opacity .2s }
+.btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,212,255,.25), inset 0 -1px 0 rgba(0,0,0,.25) }
+.btn:hover::before{ opacity:.15 }
+.btn:active{ transform: translateY(0) scale(.99) }
+.btn.secondary{ --btn-bg: linear-gradient(135deg,#2dd4bf,#22c55e) }
+.btn.ghost{
+  --btn-bg: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.08));
+  --btn-text: var(--text);
+  border:1px solid rgba(255,255,255,.12); box-shadow:none;
+}
+
+/* ========== Forms ========== */
+.input, select, textarea{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(21,24,51,.8); color:var(--text); outline:none;
+}
+label{ display:block; margin-bottom:6px; opacity:.9 }
+
+/* ========== Product cards ========== */
+.food-card{ display:flex; flex-direction:column; gap:10px }
+.food-img{ width:100%; aspect-ratio:16/11; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.08) }
+.food-title{ font-weight:700 }
+.food-desc{ font-size:14px; color:var(--muted) }
+.food-price{ font-weight:800 }
+
+/* ========== Footer ========== */
+.footer{ padding:32px; text-align:center; color:var(--muted); font-size:14px; border-top:1px solid rgba(255,255,255,.08) }
